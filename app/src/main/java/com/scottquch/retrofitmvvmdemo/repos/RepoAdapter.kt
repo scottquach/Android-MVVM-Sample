@@ -17,10 +17,6 @@ class RepoAdapter : RecyclerView.Adapter<RepoAdapter.ViewHolder>() {
 
     private var repoData: List<RepoModel> = emptyList()
 
-    interface OnClickListener {
-        fun onClick(model: RepoModel, position: Int)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RepoAdapter.ViewHolder {
         return ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.row_repo, parent, false))
     }

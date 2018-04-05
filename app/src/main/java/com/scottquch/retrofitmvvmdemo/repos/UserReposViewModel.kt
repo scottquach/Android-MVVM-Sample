@@ -8,8 +8,10 @@ import com.scottquch.retrofitmvvmdemo.models.RepoModel
 class UserReposViewModel : ViewModel() {
 
     private var userRepos: MutableLiveData<List<RepoModel>> = Repository.getInstance().usersRepo
-
-
+    
+    /**
+     * Returns the userRepo LiveData to be observed (most likely by view)
+     */
     fun getUserReposObservable(): MutableLiveData<List<RepoModel>> {
         return userRepos
     }
@@ -18,7 +20,7 @@ class UserReposViewModel : ViewModel() {
      * Makes a request to the repository to begin a new search with the new user
      */
     fun searchForUserRepos(searchedUser: String) {
-        userRepos = Repository.getInstance().requestUserRepos(searchedUser)
+        Repository.getInstance().requestUserRepos(searchedUser)
     }
 
     override fun onCleared() {

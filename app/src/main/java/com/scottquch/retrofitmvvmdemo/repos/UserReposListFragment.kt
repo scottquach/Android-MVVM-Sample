@@ -17,6 +17,10 @@ import com.scottquch.retrofitmvvmdemo.models.RepoModel
 import kotlinx.android.synthetic.main.fragment_user_repos_list_fragment.*
 import timber.log.Timber
 
+/**
+ * View that shows a list of repositories in a recycler view. Data is retrieved by observing a
+ * LiveData observable of user repos from the viewModel
+ */
 class UserReposListFragment : Fragment() {
 
     private lateinit var viewModel: UserReposViewModel

@@ -16,7 +16,7 @@ import timber.log.Timber;
 
 public class Repository {
 
-    GitHubService githubService;
+    private GitHubService githubService;
 
     private static Repository instance;
     private final MutableLiveData<List<RepoModel>> usersRepo = new MutableLiveData();
@@ -31,12 +31,18 @@ public class Repository {
         instance = this;
     }
 
-    public MutableLiveData<List<RepoModel>> requestUserRepos(String user) {
-        githubService.listRepos(user).enqueue(new Callback<List<RepoModel>>() {
+    /**
+     * Sends a request to the GitHubService to retrieve a repositories under the passed in username.
+     * Once completed it sets the value of the userRepo LiveData
+     *
+     * @param username
+     */
+    public void requestUserRepos(String username) {
+        githubService.listRepos(username).enqueue(new Callback<List<RepoModel>>() {
             @Override
             public void onResponse(Call<List<RepoModel>> call, Response<List<RepoModel>> response) {
                 Timber.d("response body was " + response.body());
-                 usersRepo.setValue(response.body());
+                usersRepo.setValue(response.body());
             }
 
             @Override
@@ -44,10 +50,13 @@ public class Repository {
                 Timber.e(t, "Error getting user repos");
             }
         });
-
-        return usersRepo;
     }
 
+    /**
+     * Retrieves the LiveData of the retrieved users repos
+     *
+     * @return LiveData of repos
+     */
     public MutableLiveData<List<RepoModel>> getUsersRepo() {
         return usersRepo;
     }
