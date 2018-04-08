@@ -8,7 +8,7 @@ import com.scottquch.retrofitmvvmdemo.models.RepoModel
 class UserReposViewModel : ViewModel() {
 
     private var userRepos: MutableLiveData<List<RepoModel>> = Repository.getInstance().usersRepo
-    
+
     /**
      * Returns the userRepo LiveData to be observed (most likely by view)
      */
